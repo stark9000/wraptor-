@@ -5,15 +5,6 @@
 **Wrap Java JARs into native, icon-branded Windows `.exe` launchers.**
 No bundled JRE required. No third-party runtime. Just a small native stub and your JAR.
 
-![Platform](https://img.shields.io/badge/platform-Windows-0078D6?style=flat-square&logo=windows&logoColor=white)
-![Java](https://img.shields.io/badge/Java-8%2B-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
-![GUI](https://img.shields.io/badge/GUI-Swing-4E9BCD?style=flat-square)
-![Native](https://img.shields.io/badge/native%20stub-C%20%2F%20MinGW--w64-00599C?style=flat-square&logo=c&logoColor=white)
-![JNA](https://img.shields.io/badge/resource%20patching-JNA%205.5.0-blue?style=flat-square)
-![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
-
-</div>
-
 ---
 
 ## What is this?
