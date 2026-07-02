@@ -1,0 +1,51 @@
+package wraptor.resource;
+
+import java.util.Base64;
+
+/**
+ * The two prebuilt native launcher stubs (stub32.exe / stub64.exe), embedded
+ * directly as base64 text baked into the compiled .class file.
+ *
+ * These used to be plain classpath resources under src/native/. The problem:
+ * NetBeans' default Ant build only copies non-.java files out of src/ into
+ * build/classes during specific targets, and an IDE "Run" doesn't always
+ * trigger that copy for files added after the project was first built - so
+ * build/classes/native/ can end up missing stub32.exe/stub64.exe even though
+ * they're sitting right there in the project on disk (exactly the "Could not
+ * find bundled resource" failure this class exists to eliminate).
+ *
+ * Embedding the bytes as string constants sidesteps that whole mechanism:
+ * they become part of the class's constant pool. If EmbeddedStubs.class
+ * compiled at all, the stub bytes are guaranteed to be in the jar/classes -
+ * there's no separate resource-copy step left to forget.
+ *
+ * Each stub is split across several string constants because the .class file
+ * format caps a single UTF-8 constant at 65535 bytes, which a ~250-350KB
+ * base64 blob overflows on its own.
+ *
+ * Regenerated from src/native/stub32.exe / src/native/stub64.exe after the
+ * stub.c fix that captures child stdout/stderr and reports crashes via a
+ * MessageBox instead of failing silently.
+ */
+public final class EmbeddedStubs {
+
+    private EmbeddedStubs() {
+    }
+
+    public static byte[] stub32() {
+        return decode(STUB32_CHUNKS);
+    }
+
+    public static byte[] stub64() {
+        return decode(STUB64_CHUNKS);
+    }
+
+    private static byte[] decode(String[] chunks) {
+        StringBuilder sb = new StringBuilder();
+        for (String chunk : chunks) {
+            sb.append(chunk);
+        }
+        return Base64.getDecoder().decode(sb.toString());
+    }
+
+    

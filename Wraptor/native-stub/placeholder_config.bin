@@ -1,0 +1,8 @@
+appName=App
+mainClass=Main
+jvmArgs=
+jreMin=
+jreMax=
+singleInstance=0
+requestAdmin=0
+mainJarName=app.jar
